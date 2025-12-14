@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samasthi Foundation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /*
+        ========================================
+        CSS Custom Properties (Marketing Theme)
+        ========================================
+        */
+        :root {
+            --color-background: #ffffff;
+            --color-text-primary: #1d1d1f;
+            --color-link-secondary: #5f5f65; /* Muted color for secondary links */
+            
+            /* Bright, attention-grabbing CTA colors */
+            --color-cta: #0e6633;
+            --color-cta-text: #ffffff;
+            --color-cta-shadow: rgba(155, 139, 140, 0.4);
+
+            --font-family-sans-serif: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --font-weight-bold: 700;
+            --navbar-height: 80px;
+            --navbar-padding: 1.5rem;
+            --container-width: 1200px;
+            --transition-speed: 0.2s;
+
+            --gap: 1.25rem;
+  --speed: 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --closed: 5rem;
+  --open: 30rem;
+  --accent: #ff6b35;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+        
+        /*
+        ========================================
+        Base & Page Styles
+        ========================================
+        */
+        *, *::before, *::after { box-sizing: border-box; }
+        body { margin: 0; font-family: var(--font-family-sans-serif); line-height: 1.6; }
+        .content { height: 200vh; max-width: var(--container-width); margin: 0 auto; padding: calc(var(--navbar-height) + 2rem) var(--navbar-padding); }
+        ul { list-style: none; margin: 0; padding: 0; }
+        a { text-decoration: none; transition: color var(--transition-speed) ease; }
+
+        /*
+        ========================================
+        Main Navbar Structure
+        ========================================
+        */
+        .navbar {
+            height: var(--navbar-height); display: flex; align-items: center;
+            position: sticky; top: 0; z-index: 1000;
+            background-color: white; border-bottom: 1px solid #ffffff;
+        }
+        .navbar__container { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: var(--container-width); margin: 0 auto; padding: 0 var(--navbar-padding); }
+        .navbar__brand { font-size: 1.5rem; font-weight: var(--font-weight-bold); color: var(--color-text-primary); }
+
+        /*
+        ========================================
+        Mobile Menu & Links
+        ========================================
+        */
+        .navbar__toggle { display: block; border: none; background: transparent; cursor: pointer; }
+        .navbar__menu { display: none; position: absolute; top: var(--navbar-height); left: 0; width: 100%; background-color: var(--color-background); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+        .navbar__menu.is-active { display: block; }
+        .navbar__item:not(:last-child) { border-bottom: 1px solid #f0f0f0; }
+
+        /* Base styles for all links */
+        .navbar__link { display: block; padding: 1.25rem var(--navbar-padding); font-weight: 500; }
+        
+        /* De-emphasized link color */
+        .navbar__link:not(.navbar__link--cta) { color: var(--color-link-secondary); }
+        .navbar__link:not(.navbar__link--cta):hover { color: var(--color-text-primary); }
+        
+        /* CTA button is distinct even on mobile */
+        .navbar__link--cta { color: var(--color-cta); font-weight: var(--font-weight-bold); }
+        
+        :is(.navbar__toggle, .navbar__link):focus-visible { outline: 2px solid var(--color-cta); outline-offset: 2px; border-radius: 4px; }
+        
+        /*
+        ========================================
+        Desktop Styles & CTA Emphasis
+        ========================================
+        */
+        @media (min-width: 768px) {
+            .navbar__toggle { display: none; }
+            .navbar__menu { display: flex; align-items: center; position: static; width: auto; background: none; box-shadow: none; }
+            .navbar__list { display: flex; align-items: center; gap: 2rem; }
+            .navbar__item:not(:last-child) { border: none; }
+            .navbar__link { padding: 0.5rem; position: relative; }
+            
+            /* Subtle underline for secondary links on desktop */
+            .navbar__link:not(.navbar__link--cta)::after {
+                content: ''; position: absolute; bottom: -4px; left: 0;
+                width: 0; height: 2px; background-color: var(--color-text-primary);
+                transition: width var(--transition-speed) ease;
+            }
+            .navbar__link:not(.navbar__link--cta):hover::after,
+            .navbar__link:not(.navbar__link--cta):focus::after { width: 100%; }
+            
+            /* --- THE CTA BUTTON --- */
+            .navbar__item--cta { margin-left: 1rem; }
+            .navbar__link--cta {
+                color: var(--color-cta-text);
+                background-color: var(--color-cta);
+                padding: 0.75rem 1.5rem;
+                border-radius: 50px;
+                transition: transform var(--transition-speed) ease,
+                            box-shadow var(--transition-speed) ease;
+            }
+            /* The "Lift & Glow" effect */
+            .navbar__link--cta:hover, .navbar__link--cta:focus-visible {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px var(--color-cta-shadow);
+                color: var(--color-cta-text); /* Ensure text stays white on hover */
+            }
+        }
+
+
+
+
+
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;}
+
+
+  .head {
+  max-width: 1400px;
+  margin: auto;
+  padding: 70px 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+}
+.head h2 {
+  font: 400 1.5rem/1.2 Inter, sans-serif;
+  color: #fff;
+}
+@media (min-width: 1024px) {
+  .head h2 {
+    font-size: 2.25rem;
+  }
+}
+.nav-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.nav-btn:hover {
+  background: var(--accent);
+}
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.slider {
+  max-width: 1400px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.track {
+  display: flex;
+  gap: var(--gap);
+  align-items: flex-start;
+  justify-content: center;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 40px;
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.project-card {
+  position: relative;
+  flex: 0 0 var(--closed);
+  height: 26rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex-basis var(--speed), transform var(--speed);
+}
+.project-card[active] {
+  flex-basis: var(--open);
+  transform: translateY(-6px);
+  
+}
+.project-card__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.75) saturate(75%);
+  transition: filter 0.3s, transform var(--speed);
+}
+.project-card:hover .project-card__bg {
+  filter: brightness(0.9) saturate(100%);
+  transform: scale(1.06);
+}
+
+.project-card__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0;
+  
+  z-index: 2;
+}
+.project-card__title {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.35rem;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.project-card__thumb,
+.project-card__desc,
+.project-card__btn {
+  display: none;
+}
+
+.project-card[active] .project-card__content {
+  flex-direction: row;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  gap: 1.1rem;
+}
+.project-card[active] .project-card__title {
+  writing-mode: horizontal-tb;
+  transform: none;
+  font-size: 2.4rem;
+}
+.project-card[active] .project-card__thumb,
+.project-card[active] .project-card__desc,
+.project-card[active] .project-card__btn {
+  display: block;
+}
+
+.project-card__thumb {
+  width: 133px;
+  height: 269px;
+  border-radius: 0.45rem;
+  object-fit: cover;
+  
+}
+.project-card__desc {
+  color: #ddd;
+  font-size: 1rem;
+  line-height: 1.4;
+  max-width: 16rem;
+}
+.project-card__btn {
+  padding: 0.55rem 1.3rem;
+  border: none;
+  border-radius: 9999px;
+  background: rgb(224, 200, 200);
+  color: rgb(31, 30, 30);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.project-card__btn:hover {
+  background: #ff824f;
+}
+
+.dots {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 20px 0;
+}
+.dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: rgba(3, 3, 3, 0.35);
+  cursor: pointer;
+  transition: 1s;
+}
+.dot.active {
+  background: var(--accent);
+  transform: scale(2);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --closed: 4rem;
+    --open: 22rem;
+  }
+  .head {
+    padding: 50px 20px 30px;
+  }
+  .track {
+    flex-direction: column;
+    scroll-snap-type: y mandatory;
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: 0;
+  }
+  .project-card {
+    height: 20rem;
+  }
+  .project-card__title {
+    font-size: 1.1rem;
+    writing-mode: horizontal-tb;
+    transform: none;
+    text-align: center;
+    padding-inline: 0.3rem;
+  }
+  .nav-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 767px) {
+  :root {
+    --closed: 100%;
+    --open: 100%;
+    --gap: 0.8rem;
+  }
+
+  .head {
+    padding: 30px 15px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .slider {
+    padding: 0 15px;
+  }
+
+  .track {
+    flex-direction: column;
+    scroll-snap-type: y mandatory;
+    gap: 0.8rem;
+    padding-bottom: 20px;
+  }
+
+  .project-card {
+    height: auto;
+    min-height: 80px;
+    flex: 0 0 auto;
+    width: 100%;
+    scroll-snap-align: start;
+  }
+
+  .project-card[active] {
+    min-height: 300px;
+    transform: none;
+   
+  }
+
+  .project-card__content {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 1rem;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .project-card__title {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 1.2rem;
+    margin-right: auto;
+  }
+
+  .project-card__thumb,
+  .project-card__desc,
+  .project-card__btn {
+    display: none;
+  }
+
+  .project-card[active] .project-card__content {
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+
+  .project-card[active] .project-card__title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
+
+  .project-card[active] .project-card__thumb {
+    width: 200px;
+    height: 267px;
+    border-radius: 0.35rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-card[active] .project-card__desc {
+    font-size: 0.95rem;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .project-card[active] .project-card__btn {
+    align-self: center;
+    width: 100%;
+    text-align: center;
+    padding: 0.7rem;
+  }
+
+  .dots {
+    display: none;
+  }
+
+  .controls {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 15px 20px;
+  }
+
+  .nav-btn {
+    position: static;
+    transform: none;
+  }
+}
+
+
+
+
+
+
+        :root {
+            --menu-size: 60px; /* The size of the main button */
+            --menu-item-size: 50px;
+            --menu-radius: 150px; /* How far the items fly out */
+
+            --color-background: #f4f4f5;
+            --color-primary: #0e6633;
+            --color-primary-light: #555457;
+            --color-surface: #ffffff;
+            --color-text-light: #ffffff;
+            --color-text-dark: #374151;
+            
+            --transition-speed: 0.4s;
+            --transition-curve: cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncy */
+        }
+
+        
+
+        /*
+        ========================================
+        The Main Menu Container
+        ========================================
+        Fixed to the bottom-right of the screen.
+        */
+        .radial-menu {
+            position: fixed;
+            bottom: 2rem; right: 2rem;
+            width: var(--menu-size); height: var(--menu-size);
+            z-index: 1000;
+        }
+
+        /* The invisible checkbox that tracks the menu's state (open/closed) */
+        #menu-toggle-checkbox {
+            display: none;
+        }
+
+        /*
+        ========================================
+        The Main Menu Button (The Label)
+        ========================================
+        This is what the user clicks.
+        */
+        .menu-toggle-label {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: var(--color-primary);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--color-text-light);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform var(--transition-speed) ease;
+            z-index: 2; /* Sits above the menu items */
+        }
+        .menu-toggle-label:hover { background-color: var(--color-primary-light); }
+        
+        /* The 'plus' icon and its transition to an 'X' */
+        .icon-open, .icon-close { position: absolute; width: 24px; height: 24px; transition: transform 0.3s ease, opacity 0.3s ease; }
+        #menu-toggle-checkbox:checked + .menu-toggle-label .icon-open { transform: rotate(45deg); opacity: 0; }
+        #menu-toggle-checkbox:checked + .menu-toggle-label .icon-close { transform: rotate(0); opacity: 1; }
+        .icon-close { opacity: 0; transform: rotate(-45deg); }
+
+        /*
+        ========================================
+        The Navigation Links (Menu Items)
+        ========================================
+        */
+        .menu-items { list-style: none; margin: 0; padding: 0; }
+
+        .menu-item {
+            position: absolute;
+            top: 5px; left: 5px; /* Centered with the main button */
+            width: var(--menu-item-size); height: var(--menu-item-size);
+            
+            /* Hidden by default and positioned in the center */
+            opacity: 0;
+            transform: translate(0, 0) scale(0.5);
+            transition: transform var(--transition-speed) var(--transition-curve), 
+                        opacity var(--transition-speed) var(--transition-curve);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .menu-item a {
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; height: 100%;
+            background-color: var(--color-surface);
+            color: var(--color-text-dark);
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .menu-item a:hover { background-color: #f9fafb; }
+        .menu-item svg { width: 24px; height: 24px; }
+        
+        /*
+        ========================================
+        Open State and Circular Positioning
+        ========================================
+        When the checkbox is checked, this block becomes active.
+        */
+        #menu-toggle-checkbox:checked ~ .menu-items .menu-item {
+            opacity: 1;
+            pointer-events: auto; /* Make items clickable */
+        }
+        
+        /*
+        ========================================
+        The magic happens here
+        ========================================
+        These angles are for a menu in the bottom-right corner,
+        fanning out up and to the left.
+        */
+
+        /* Item 1: Positioned at 90 degrees */
+        #menu-toggle-checkbox:checked ~ .menu-items .menu-item:nth-child(1) {
+            transform: translateY(calc(-1 * var(--menu-radius)));
+        }
+        
+        /* Item 2: Positioned at 112.5 degrees */
+        #menu-toggle-checkbox:checked ~ .menu-items .menu-item:nth-child(2) {
+            transform: translate(calc(-0.383 * var(--menu-radius)), calc(-0.924 * var(--menu-radius)));
+        }
+        
+        /* Item 3: Positioned at 135 degrees */
+        #menu-toggle-checkbox:checked ~ .menu-items .menu-item:nth-child(3) {
+            transform: translate(calc(-0.707 * var(--menu-radius)), calc(-0.707 * var(--menu-radius)));
+        }
+
+        /* Item 4: Positioned at 157.5 degrees */
+        #menu-toggle-checkbox:checked ~ .menu-items .menu-item:nth-child(4) {
+             transform: translate(calc(-0.924 * var(--menu-radius)), calc(-0.383 * var(--menu-radius)));
+        }
+        
+        /* Item 5: Positioned at 180 degrees */
+        #menu-toggle-checkbox:checked ~ .menu-items .menu-item:nth-child(5) {
+            transform: translateX(calc(-1 * var(--menu-radius)));
+        }
+        .hero {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+  border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 500px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.rural-section {
+  position: relative;
+  background: #a89c9c1c;
+  padding-bottom: 120px;
+}
+
+.rural-inner {
+  display: flex;
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 20px;
+  gap: 40px;
+}
+
+/* LEFT CONTENT */
+.rural-content {
+  background: #e0d7d783;
+  padding: 40px;
+  max-width: 450px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.315);
+  z-index: 2;
+  border-radius: 25px;
+}
+:hover.rural-content{
+    transition: all 0.5s ease;
+    transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(2, 36, 19, 0.322);
+}
+
+
+
+
+
+
+
+
+.rural-tag {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+
+.rural-content h1 {
+  font-size: 40px;
+  margin: 15px 0;
+}
+
+.rural-content p {
+  color: #555;
+  line-height: 1.6;
+}
+
+.rural-btn {
+  display: inline-block;
+  margin-top: 15px;
+  color: #005ea2;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* RIGHT VIDEO */
+.rural-media {
+  position: relative;
+  width: 100%;
+  height: 420px;       /* IMPORTANT */
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.rural-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CURVE */
+.rural-wave {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+}
+.hero-wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.hero {
+    border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-content {
+    border-radius: 15px;
+  position:absolute;
+  top: 50%;
+  left: 25%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.322);
+  padding: 30px;
+  max-width: 420px;
+  z-index: 2;
+}
+
+.hero-tag {
+  font-size: 12px;
+  font-weight: 700;
+  color: #666;
+}
+
+.hero-content h1 {
+  font-size: 28px;
+  margin: 10px 0;
+}
+
+.hero-content p {
+  color: #555;
+}
+
+.hero-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #000000;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+
+
+
+.hero-wrapper-first {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.hero-first {
+    border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-content-first {
+    border-radius: 15px;
+  position:absolute;
+  top: 45%;
+  left: 3%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.26);
+  padding: 30px;
+  max-width: 420px;
+  z-index: 2;
+}
+
+.hero-tag-first {
+  font-size: 12px;
+  font-weight: 700;
+  
+}
+
+.hero-content-first h1 {
+  font-size: 28px;
+  margin: 10px 0;
+  color: #000000;
+}
+
+.hero-content-first h2 {
+  color: rgb(32, 32, 32);
+}
+
+.hero-link-first {
+  display: inline-block;
+  margin-top: 15px;
+  color: #000000;
+  font-weight: 600;
+  text-decoration: none;
+}
+/* From Uiverse.io by adamgiebl */ 
+.cssbuttons-io-button {
+  background: #104417;
+  color: white;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  margin-top: 2%;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #104417;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+}
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #104417;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #7b52b9;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #fff;
+  color: #222;
+}
+
+.team-section {
+  text-align: center;
+  padding: 80px 10%;
+  margin-top: -5%;
+}
+
+.small-title {
+  color: #888;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.team-section h1 {
+  font-size: 42px;
+  margin: 10px 0;
+}
+
+.subtitle {
+  max-width: 700px;
+  margin: 0 auto 60px;
+  color: #777;
+  font-size: 16px;
+}
+
+/* Container */
+.team-container {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  border-radius: 25px;
+}
+
+/* Card */
+.team-card {
+  display: flex;
+  gap: 30px;
+  max-width: 500px;
+  align-items: center;
+  transition: transform 0.3s ease;
+  border-radius: 25px;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+}
+
+/* Image */
+.team-img {
+  width: 220px;
+  height: 220px;
+  background: #2ecc71;
+  overflow: hidden;
+  border-radius: 25px;
+}
+
+.team-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.team-card:hover .team-img img {
+  transform: scale(1.1);
+}
+
+/* Info */
+.team-info {
+  text-align: left;
+}
+
+.team-info h3 {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.team-info span {
+  color: #777;
+  font-size: 14px;
+}
+
+.team-info p {
+  margin: 15px 0;
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Social Icons */
+.social {
+  display: flex;
+  gap: 15px;
+}
+
+.social i {
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social i:hover {
+  color: #2ecc71;
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .team-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .team-info {
+    text-align: center;
+  }
+}
+
+.footer {
+  background: url("https://images.pexels.com/photos/693776/pexels-photo-693776.jpeg") center/cover no-repeat;
+  position: relative;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  border-radius: 10px;
+}
+
+.footer-overlay {
+  background: rgba(0, 0, 0, 0.418); /* dark overlay for readability */
+  padding: 60px 8% 20px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+.footer-col h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #8cff8c;
+}
+
+.footer-col p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+  text-decoration: none;
+  color: #ddd;
+  font-size: 14px;
+}
+
+.footer-col ul li a:hover {
+  color: #8cff8c;
+}
+
+.footer-col input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+.footer-col button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #4CAF50;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.footer-col button:hover {
+  background: #43a047;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 18px;
+  background: #4CAF50;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  background: #66bb6a;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 13px;
+  color: #ccc;
+}
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  background: #4CAF50; /* green hover */
+  transform: translateY(-3px);
+}
+    </style>
+</head>
+<body>
+
+
+   
+
+    <header class="navbar">
+        <div class="navbar__container">
+            <a href="#" class="navbar__brand">Samasthi Foundation</a>
+            
+            <button class="navbar__toggle" id="navbarToggle" aria-label="Open menu" aria-controls="navbarMenu" aria-expanded="false">&#x2630;</button>
+            
+            <nav class="navbar__menu" id="navbarMenu">
+                <ul class="navbar__list">
+                    <li class="navbar__item"><a href="#" class="navbar__link">About</a></li>
+                    <li class="navbar__item"><a href="#" class="navbar__link">Projects</a></li>
+                    <li class="navbar__item"><a href="#" class="navbar__link">Gallery</a></li>
+                    <li class="navbar__item navbar__item--cta">
+                        <a href="#" class="navbar__link navbar__link--cta">Donate</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="hero">
+        <img src="pexels-equalstock-20527519.jpg" alt="Hero Image">
+        <div class="second-image">
+          <img src="Capture (1).png"
+          style=" position: absolute;
+          top: 100px;      /* distance from top */
+          right: 1px;    /* distance from right */
+          width: 250px;   /* size of second image */
+          height: auto;
+          z-index: 2;">
+
+        </div>
+
+        <div class="hero-content-first">
+            <span class="hero-tag"></span>
+            <h1>OUR VISION</h1><h2>to transform Indian farming via sustainable farming</h2>
+            
+            <a href="#" class="hero-link">Why was Samashti started →</a>
+          </div>
+
+         
+      </div>
+    
+
+
+
+
+
+
+
+
+      <section class="rural-section">
+
+        <div class="rural-inner">
+      
+          <!-- LEFT CONTENT -->
+          <div class="rural-content">
+            <h2><span class="rural-tag">COLLABORATORS</span></h2>
+            
+            <p>
+              <div class="imgg">
+                <img src="n.JPG">
+                Forest Department Tumkur
+                <br><img src="m.JPG">  
+                
+               <figcaption>KVK Hirehalli Tumkur</figcaption> 
+
+
+                <img src="o.JPG">
+               <figcaption> Srishti Digilife</figcaption>
+              </div>
+            </p>
+            
+          </div>
+      
+          <!-- RIGHT VIDEO -->
+          <div class="rural-media">
+            <video autoplay muted loop playsinline>
+              <source src="video.mp4" type="video/mp4">
+            </video>
+            <div class="hero-content">
+                <h1>
+                    UPCOMING EVENTS
+                </h1>
+                <h2>Let's expand the Earth's natural resource base<br>and maintain and improve soil fertility</h2>
+                
+                <a href="#" class="hero-link">Details →</a>
+              </div>
+              
+          </div>
+          
+
+        
+      
+        <!-- CURVED SHAPE -->
+        <svg class="rural-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path d="M0,40 C240,100 480,0 720,20 960,40 1200,80 1440,40 L1440,120  Z"
+                fill="#ffffff"></path>
+        </svg>
+      
+      </section>
+      <div class="project">
+        <h1 style="text-align: center; font-size: 50px;">Projects</h1>
+      </div>
+      
+<section>
+    <div class="head">
+      <h2>projects</h2>
+  
+      <div class="controls">
+        <button id="prev" class="nav-btn" aria-label="Prev">‹</button>
+        <button id="next" class="nav-btn" aria-label="Next">›</button>
+      </div>
+    </div>
+  
+    <div class="slider">
+      <div class="track" id="track">
+  
+        <article class="project-card" active>
+          <img class="project-card__bg" src="varsha.JPG" alt="">
+          <div class="project-card__content">
+            <img class="project-card__thumb" src="varsh1.JPG" alt="">
+            <div>
+              <h3 class="project-card__title">Varsha Niti</h3>
+              <p class="project-card__desc">
+                Water Management & Harvesting</p>
+              <button class="project-card__btn">Details</button>
+            </div>
+          </div>
+        </article>
+  
+        <article class="project-card">
+          <img class="project-card__bg" src="avani.JPG" alt="">
+          <div class="project-card__content">
+            <img class="project-card__thumb" src="avani1.JPG" alt="">
+            <div>
+              <h3 class="project-card__title">Avani</h3>
+              <p class="project-card__desc">Soil Management and Testing</p>
+              <button class="project-card__btn">Details</button>
+            </div>
+          </div>
+        </article>
+  
+        <article class="project-card">
+          <img class="project-card__bg" src="bija.JPG" alt="">
+          <div class="project-card__content">
+            <img class="project-card__thumb" src="bija1.JPG" alt="">
+            <div>
+              <h3 class="project-card__title">Bija Niti</h3>
+              <p class="project-card__desc">Seed Management</p>
+              <button class="project-card__btn">Details</button>
+            </div>
+          </div>
+        </article>
+  
+        <article class="project-card">
+          <img class="project-card__bg" src="krsi.JPG" alt="">
+          <div class="project-card__content">
+            <img class="project-card__thumb" src="krsi1.JPG" alt="">
+            <div>
+              <h3 class="project-card__title">Krsi Vana</h3>
+              <p class="project-card__desc">AgroForestry</p>
+              <button class="project-card__btn">Details</button>
+            </div>
+          </div>
+        </article>
+  
+        
+      </div>
+    </div>
+  
+    <div class="dots" id="dots"></div>
+  </section>
+      <script>(() => {
+        const track = document.getElementById("track");
+        const wrap = track.parentElement;
+        const cards = Array.from(track.children);
+        const prev = document.getElementById("prev");
+        const next = document.getElementById("next");
+        const dotsBox = document.getElementById("dots");
+      
+        const isMobile = () => matchMedia("(max-width:767px)").matches;
+      
+        cards.forEach((_, i) => {
+          const dot = document.createElement("span");
+          dot.className = "dot";
+          dot.onclick = () => activate(i, true);
+          dotsBox.appendChild(dot);
+        });
+        const dots = Array.from(dotsBox.children);
+      
+        let current = 0;
+      
+        function center(i) {
+          const card = cards[i];
+          const axis = isMobile() ? "top" : "left";
+          const size = isMobile() ? "clientHeight" : "clientWidth";
+          const start = isMobile() ? card.offsetTop : card.offsetLeft;
+          wrap.scrollTo({
+            [axis]: start - (wrap[size] / 2 - card[size] / 2),
+            behavior: "smooth"
+          });
+        }
+      
+        function toggleUI(i) {
+          cards.forEach((c, k) => c.toggleAttribute("active", k === i));
+          dots.forEach((d, k) => d.classList.toggle("active", k === i));
+          prev.disabled = i === 0;
+          next.disabled = i === cards.length - 1;
+        }
+      
+        function activate(i, scroll) {
+          if (i === current) return;
+          current = i;
+          toggleUI(i);
+          if (scroll) center(i);
+        }
+      
+        function go(step) {
+          activate(Math.min(Math.max(current + step, 0), cards.length - 1), true);
+        }
+      
+        prev.onclick = () => go(-1);
+        next.onclick = () => go(1);
+      
+        addEventListener(
+          "keydown",
+          (e) => {
+            if (["ArrowRight", "ArrowDown"].includes(e.key)) go(1);
+            if (["ArrowLeft", "ArrowUp"].includes(e.key)) go(-1);
+          },
+          { passive: true }
+        );
+      
+        cards.forEach((card, i) => {
+          card.addEventListener(
+            "mouseenter",
+            () => matchMedia("(hover:hover)").matches && activate(i, true)
+          );
+          card.addEventListener("click", () => activate(i, true));
+        });
+      
+        let sx = 0,
+          sy = 0;
+        track.addEventListener(
+          "touchstart",
+          (e) => {
+            sx = e.touches[0].clientX;
+            sy = e.touches[0].clientY;
+          },
+          { passive: true }
+        );
+      
+        track.addEventListener(
+          "touchend",
+          (e) => {
+            const dx = e.changedTouches[0].clientX - sx;
+            const dy = e.changedTouches[0].clientY - sy;
+            if (isMobile() ? Math.abs(dy) > 60 : Math.abs(dx) > 60)
+              go((isMobile() ? dy : dx) > 0 ? -1 : 1);
+          },
+          { passive: true }
+        );
+        if (window.matchMedia("(max-width:767px)").matches) dotsBox.hidden = true;
+      
+        addEventListener("resize", () => center(current));
+      
+        toggleUI(0);
+        center(0);
+      })();</script>
+<center>
+      <button class="cssbuttons-io-button">
+       Our Journey
+        <div class="icon">
+          <svg
+            height="24"
+            width="24"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg" 
+          >
+            <path d="M0 0h24v24H0z" fill="none"></path>
+            <path
+              d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+              fill="currentColor"
+            ></path>
+          </svg>
+        </div>
+      </button>
+      
+    </center>
+
+      <div class="journey">
+        <img 
+          src="ChatGPT Image Dec 13, 2025, 08_05_05 PM.png"
+          style="width: 500px; height: 500px;"
+        >
+        <img src="journey1.png"
+        style="width: 700px; height: 400px; margin-left: 10%;">
+      </div>
+      
+      
+
+
+
+
+
+
+      <div class="team">
+        <h1 style="text-align: center; font-size: 50px; margin-top:3% ;">Meet Our Team</h1>
+      </div>
+
+      <section class="team-section">
+        
+       
+        <p class="subtitle">
+          Our team brings together farmers, researchers, and change-makers dedicated to supporting sustainable agriculture. We work closely with rural communities to protect natural resources and improve livelihoods.
+        </p>
+      
+        <div class="team-container">
+      
+          <!-- Team Card -->
+          <div class="team-card">
+            <div class="team-img">
+              <!-- replace with real image -->
+              <img src="sudha.JPG" alt="Sudha Sundaravardhan">
+            </div>
+            <div class="team-info">
+              <h3>Sudha Sundaravardhan</h3>
+              <span>Founding Managing Trustee</span>
+              <p>
+                Sudha, the Founding Managing Trustee is an serial entrepreneur<br>
+                 who has been in the kids entertainment industry for the past 11 years.
+              </p>
+              <div class="social">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-linkedin-in"></i>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Team Card -->
+          <div class="team-card">
+            <div class="team-img">
+              <img src="somya.JPG" alt="Soumya Pattar">
+            </div>
+            <div class="team-info">
+              <h3>Soumya Pattar</h3>
+              <span>social entrepreneur</span>
+              <p>
+                Soumya is a social entrepreneur by passion<br>
+                 and an engineer by profession.<br>
+                  She brings in 10+ years of technology experience<br>
+                   which she aims to bring for better experiences in sustainable agricultural practices.
+              </p>
+              <div class="social">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-linkedin-in"></i>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </section>
+
+      <div class="team">
+        <h1 style="text-align: center; font-size: 50px; margin-top:3% ;">Be a part of our team</h1>
+      </div>
+
+      <section class="team-section">
+        
+       
+        <p class="subtitle">
+          By being part of this journey, U can commit to strengthening sustainable farming practices, sharing knowledge, and helping farmers build a secure and prosperous future because farmers are not just our present, they are the foundation of our future. 🌾
+        </p>
+      
+        <div class="team-container">
+      
+          <!-- Team Card -->
+          <div class="team-card">
+            <div class="team-img">
+              <!-- replace with real image -->
+              <img src="DONATE.JPG" alt="Sudha Sundaravardhan">
+            </div>
+            <div class="team-info">
+              <h3>DONATE</h3>
+              <span></span>
+              <p>
+                Every contribution helps strengthen farmers’ livelihoods<br> and protects our future,
+                   because when we invest in farmers, we invest in tomorrow.
+              </p>
+              <div class="social">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-linkedin-in"></i>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Team Card -->
+          <div class="team-card">
+            <div class="team-img">
+              <img src="VOLUNTEER.JPG" alt="Soumya Pattar">
+            </div>
+            <div class="team-info">
+              <h3>VOLUNTEER</h3>
+              <span></span>
+              <p>
+                Stand with our farmers to help build a stronger,<br>
+                 self-reliant future, because farmers are the backbone of our nation.
+              </p>
+              <div class="social">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-linkedin-in"></i>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+    <div class="radial-menu">
+        <input type="checkbox" id="menu-toggle-checkbox">
+        <label for="menu-toggle-checkbox" class="menu-toggle-label">
+            <svg class="icon-open" viewBox="0 0 24 24"><path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
+            <svg class="icon-close" viewBox="0 0 24 24"><path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+        </label>
+        
+        <ul class="menu-items">
+            <li class="menu-item"><a href="#" aria-label="Home"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" /></svg></a></li>
+            <li class="menu-item"><a href="#" aria-label="Search"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg></a></li>
+            <li class="menu-item"><a href="#" aria-label="Settings"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.5,21.9 9.32,21.72L5.82,18.22C5.64,18.04 5.56,17.79 5.56,17.53C5.56,17.28 5.64,17.03 5.82,16.85L8.35,14.32L9.76,15.73L6.96,18.53L10.46,22L10,22M22,10C22,9.75 21.9,9.5 21.72,9.32L18.22,5.82C18.04,5.64 17.79,5.56 17.53,5.56C17.28,5.56 17.03,5.64 16.85,5.82L14.32,8.35L15.73,9.76L18.53,6.96L22,10.46L22,10Z" /></svg></a></li>
+            <li class="menu-item"><a href="#" aria-label="Mail"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" /></svg></a></li>
+            <li class="menu-item"><a href="#" aria-label="Profile"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,12A5,5 0 0,0 17,7A5,5 0 0,0 12,2A5,5 0 0,0 7,7A5,5 0 0,0 12,12M12,14C9.33,14 4,15.33 4,18V20H20V18C20,15.33 14.67,14 12,14Z" /></svg></a></li>
+        </ul>
+    </div>
+
+
+
+<footer class="footer">
+  <div class="footer-overlay">
+    <div class="footer-container">
+
+      <!-- Get in Touch -->
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <p>Don’t miss updates on sustainable farming & rural development.</p>
+        <input type="email" placeholder="Email">
+        <button>Subscribe</button>
+      </div>
+
+      <!-- About -->
+      <div class="footer-col">
+        <h4>About Us</h4>
+        <ul>
+          <li><a href="#">Our Mission</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Volunteer</a></li>
+          <li><a href="#">Donate</a></li>
+        </ul>
+      </div>
+
+      <!-- Help -->
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- Social -->
+   <div class="footer-col">
+  <h4>Connect With Us</h4>
+  <div class="social-icons">
+    <a href="https://www.instagram.com/samashtifoundation/" target="_blank">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://www.facebook.com/samashtifoundation.org/" target="_blank">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/samashti-foundation/" target="_blank">
+      <i class="fa-brands fa-linkedin-in"></i>
+    </a>
+  </div>
+</div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2025 Samasthi Foundation. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const navbarToggle = document.getElementById('navbarToggle');
+        const navbarMenu = document.getElementById('navbarMenu');
+
+        if (navbarToggle && navbarMenu) {
+            navbarToggle.addEventListener('click', function () {
+                navbarToggle.classList.toggle('is-active');
+                navbarMenu.classList.toggle('is-active');
+
+                const isExpanded = navbarMenu.classList.contains('is-active');
+                navbarToggle.setAttribute('aria-expanded', isExpanded);
+            });
+        }
+    });
+    </script>
+</body>
+</html>
